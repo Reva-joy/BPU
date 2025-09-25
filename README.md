@@ -32,10 +32,6 @@ Load file.v and file_tb.v in ModelSim.
 
 Run simulation and check waveform outputs for prediction cycles and counter updates.
 
-
-git clone https://github.com/your-username/branch-prediction-unit.git
-Add src/ files to a Quartus project.
-
 Run the testbench in ModelSim (tb/demo1_tb.v) to see prediction behavior.
 
 Synthesize the design for your FPGA; optimize PHT size for your device.
