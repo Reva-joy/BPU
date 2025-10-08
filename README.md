@@ -1,37 +1,51 @@
-# BPU
-Overview
-This project implements a Branch Prediction Unit (BPU) for a pipelined processor in Verilog HDL. The design utilizes a dynamic, 2-bit saturating counter-based predictor, maintaining a Pattern History Table (PHT) to improve CPU throughput by minimizing control hazards caused by conditional branch instructions.
+🧠 Branch Prediction Unit (BPU) — Verilog HDL
 
-Features
-2-bit dynamic predictor (saturating counters) for each indexed branch instruction
+This project implements a dynamic 2-bit branch prediction unit to reduce control hazards in a pipelined processor.
+It uses a Pattern History Table (PHT) of 2-bit saturating counters to predict whether a branch will be taken or not, improving CPU performance.
 
-Pipelined and synthesizable design ready for FPGA deployment (tested on Intel MAX V family, Quartus Prime 17.1)
+🔧 Features
 
-RTL simulations provided (ModelSim) with real branch scenarios
+Dynamic 2-bit predictor (Saturating counter)
 
-Modularized code and testbenches, suitable for integration in larger CPU projects
+Pattern History Table (PHT)-based prediction
 
-Prerequisites
-Quartus Prime (tested with Lite/Standard Edition 17.1+)
+Fully synthesizable and FPGA-tested design (Intel MAX V)
 
-ModelSim (for functional simulation)
+Verilog HDL implementation with ModelSim simulation
 
-Verilog HDL support
+🧩 Methodology
+
+Instruction fetch and branch identification
+
+PHT lookup for prediction
+
+Counter update after actual branch outcome
+
+Prediction accuracy improves with each iteration
+
+💻 Tools Used
+
+Intel Quartus Prime – Design synthesis
+
+ModelSim – Functional simulation
 
 
-Open the Quartus project and add source files from src/.
+📈 Output Waveform Explanation
 
-Run simulation in ModelSim with demo1_tb.v to observe prediction behavior.
+In the ModelSim simulation:
 
-Compile and synthesize for your FPGA device (edit parameters for your target board).
+clk – system clock signal.
 
-Example
-To simulate:
+branch_taken – actual outcome of the branch (1 = taken, 0 = not taken).
 
-Load file.v and file_tb.v in ModelSim.
+predict_taken – predictor’s output (1 = predicted taken, 0 = not taken).
 
-Run simulation and check waveform outputs for prediction cycles and counter updates.
+state – 2-bit saturating counter value (00, 01 = predict not taken; 10, 11 = predict taken).
 
-Run the testbench in ModelSim (tb/demo1_tb.v) to see prediction behavior.
+Interpretation:
 
-Synthesize the design for your FPGA; optimize PHT size for your device.
+Initially, the predictor may mispredict (e.g., predicts not-taken when taken).
+
+With repeated branch outcomes, the counter saturates toward the correct prediction (11 or 00).
+
+The waveform shows predictor adaptation — mispredictions early, then stable correct predictions as it “learns” the branch behavior.
