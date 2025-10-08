@@ -31,6 +31,7 @@ ModelSim – Functional simulation
 
 
 📈 Output Waveform Explanation
+https://github.com/Reva-joy/BPU/tree/main/Schematic
 
 Schematic shown are the various angles views of the developed system 
 
