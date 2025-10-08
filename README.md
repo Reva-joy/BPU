@@ -32,6 +32,8 @@ ModelSim – Functional simulation
 
 📈 Output Waveform Explanation
 
+Schematic shown are the various angles views of the developed system 
+
 In the ModelSim simulation:
 
 clk – system clock signal.
